@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8f3f32">
+  <meta name="description" content="Uma história feita de começos, recomeços e escolhas para continuar juntos.">
+  <meta property="og:title" content="Nossa história">
+  <meta property="og:description" content="Nosso amor é feito de ciclos, e cada ciclo nos escolhe de novo.">
+  <meta property="og:image" content="assets/preview.jpg">
+  <title>Nossa história</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --vinho:#743128;
+      --terracota:#b75b43;
+      --coral:#e8896d;
+      --creme:#fffaf5;
+      --rose:#f8e5da;
+      --texto:#4f2924;
+      --branco:#fff;
+      --sombra:0 22px 70px rgba(78,35,28,.15);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--texto);
+      background:
+        radial-gradient(circle at 10% 20%,rgba(232,137,109,.11),transparent 25%),
+        radial-gradient(circle at 90% 70%,rgba(183,91,67,.08),transparent 25%),
+        var(--creme);
+      font-family:"Cormorant Garamond",serif;
+      font-size:18px;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    img{display:block;width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+
+    .topo{
+      position:fixed;
+      inset:0 0 auto 0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px clamp(20px,5vw,74px);
+      color:#fff;
+      background:linear-gradient(to bottom,rgba(23,12,10,.58),transparent);
+      transition:.3s ease;
+    }
+    .topo.rolado{
+      background:rgba(70,30,25,.92);
+      backdrop-filter:blur(14px);
+      box-shadow:0 8px 30px rgba(0,0,0,.13);
+    }
+    .marca{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-family:"Montserrat",sans-serif;
+      letter-spacing:.12em;
+      font-size:.77rem;
+      text-transform:uppercase;
+    }
+    .mini-simbolos{font-size:1.55rem;letter-spacing:.2em;color:#f3a080}
+    nav{display:flex;gap:30px;font-size:.83rem;letter-spacing:.08em;text-transform:uppercase}
+    nav a{position:relative}
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;right:100%;bottom:-6px;height:1px;
+      background:#fff;
+      transition:.25s ease;
+    }
+    nav a:hover::after{right:0}
+
+    .hero{
+      min-height:100svh;
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      background:
+        linear-gradient(90deg,rgba(15,8,7,.72) 0%,rgba(15,8,7,.33) 41%,rgba(15,8,7,.08) 74%),
+        linear-gradient(0deg,rgba(53,26,22,.52),transparent 42%),
+        url("assets/nosso-lugar.jpg") center 38%/cover no-repeat;
+    }
+    .hero-conteudo{
+      position:relative;
+      z-index:2;
+      width:min(700px,92vw);
+      margin:0 0 clamp(80px,10vh,120px) clamp(24px,7vw,105px);
+      color:white;
+    }
+    .hero h1{
+      margin:0 0 12px;
+      max-width:620px;
+      font-family:"Great Vibes",cursive;
+      font-weight:400;
+      font-size:clamp(4rem,8vw,7.8rem);
+      line-height:.88;
+      text-shadow:0 8px 35px rgba(0,0,0,.28);
+    }
+    .hero p{
+      margin:22px 0 34px;
+      max-width:470px;
+      font-size:clamp(1.2rem,2vw,1.6rem);
+      line-height:1.45;
+    }
+    .botao{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:13px 23px;
+      border:1px solid rgba(255,255,255,.62);
+      border-radius:999px;
+      font-family:"Montserrat",sans-serif;
+      font-size:.76rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      backdrop-filter:blur(8px);
+      transition:.25s ease;
+    }
+    .botao:hover{background:white;color:var(--vinho);transform:translateY(-2px)}
+
+    .secao{padding:clamp(70px,10vw,130px) clamp(20px,6vw,90px)}
+    .container{max-width:1220px;margin:auto}
+    .titulo{
+      margin:0 0 12px;
+      text-align:center;
+      font-family:"Great Vibes",cursive;
+      font-weight:400;
+      font-size:clamp(3.3rem,6vw,5.5rem);
+      color:var(--vinho);
+      line-height:1;
+    }
+    .subtitulo{
+      margin:0 auto 48px;
+      max-width:720px;
+      text-align:center;
+      font-size:1.25rem;
+    }
+
+    .ciclos{
+      margin-top:-55px;
+      position:relative;
+      z-index:5;
+      padding:0 clamp(15px,5vw,70px);
+    }
+    .ciclos-grid{
+      max-width:1120px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      background:rgba(255,250,246,.95);
+      border:1px solid rgba(183,91,67,.24);
+      border-radius:28px;
+      box-shadow:var(--sombra);
+      overflow:hidden;
+      backdrop-filter:blur(14px);
+    }
+    .ciclo{
+      padding:36px 28px;
+      text-align:center;
+      position:relative;
+    }
+    .ciclo:not(:last-child)::after{
+      content:"";position:absolute;right:0;top:18%;height:64%;width:1px;background:rgba(183,91,67,.22)
+    }
+    .ciclo svg{width:155px;height:95px;stroke:var(--terracota);fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+    .ciclo h3{
+      margin:12px 0 2px;
+      font-family:"Montserrat",sans-serif;
+      font-size:.84rem;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--vinho);
+    }
+    .ciclo p{margin:4px 0 0;font-size:1rem}
+
+    .momentos-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:18px;
+    }
+    .momento{
+      min-width:0;
+      transition:.28s ease;
+    }
+    .momento:hover{transform:translateY(-8px)}
+    .momento-foto{
+      aspect-ratio:4/5;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 14px 35px rgba(83,38,30,.13);
+    }
+    .momento-foto img{height:100%;object-fit:cover;transition:.55s ease}
+    .momento:hover img{transform:scale(1.045)}
+    .momento h3{
+      margin:16px 0 4px;
+      font-size:1.32rem;
+      text-align:center;
+      color:var(--vinho);
+    }
+    .momento p{margin:0;text-align:center;font-size:1rem;line-height:1.4}
+
+    .carta{
+      background:linear-gradient(145deg,#fff,#fff5ee);
+      border:1px solid rgba(183,91,67,.18);
+      border-radius:30px;
+      box-shadow:var(--sombra);
+      padding:clamp(35px,6vw,78px);
+      position:relative;
+      overflow:hidden;
+    }
+    .carta::before,.carta::after{
+      content:"♥";position:absolute;color:rgba(232,137,109,.16);font-size:9rem;line-height:1
+    }
+    .carta::before{top:-40px;left:-20px;transform:rotate(-18deg)}
+    .carta::after{bottom:-58px;right:-15px;transform:rotate(17deg)}
+    .carta-conteudo{position:relative;z-index:2;max-width:850px;margin:auto;text-align:center}
+    .carta blockquote{
+      margin:0;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(2.7rem,5vw,5rem);
+      line-height:1.25;
+      color:var(--vinho);
+    }
+    .carta p{font-size:1.2rem}
+
+    .planos{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:34px;
+      align-items:center;
+    }
+    .plano-foto{
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:var(--sombra);
+      aspect-ratio:5/4;
+    }
+    .plano-foto img{height:100%;object-fit:cover}
+    .plano-texto h2{
+      margin:0 0 15px;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(3.2rem,5vw,5.5rem);
+      font-weight:400;
+      color:var(--vinho);
+      line-height:1;
+    }
+    .plano-texto p{font-size:1.23rem}
+    .lista-amor{display:grid;gap:13px;margin-top:25px}
+    .lista-amor div{
+      display:flex;gap:12px;align-items:flex-start;
+      padding:13px 16px;
+      background:rgba(248,229,218,.56);
+      border-radius:15px;
+    }
+    .lista-amor span{color:var(--coral)}
+
+    footer{
+      padding:38px 24px;
+      text-align:center;
+      border-top:1px solid rgba(183,91,67,.18);
+      color:var(--vinho);
+    }
+    footer strong{font-family:"Great Vibes",cursive;font-size:2rem;font-weight:400}
+
+    .revelar{opacity:0;transform:translateY(28px);transition:.75s ease}
+    .revelar.visivel{opacity:1;transform:none}
+
+    @media(max-width:900px){
+      nav{display:none}
+      .hero{background-position:61% center}
+      .hero-conteudo{margin-left:24px;margin-right:24px}
+      .ciclos-grid{grid-template-columns:1fr}
+      .ciclo:not(:last-child)::after{top:auto;right:10%;left:10%;bottom:0;width:auto;height:1px}
+      .momentos-grid{grid-template-columns:repeat(2,1fr)}
+      .momento:last-child{grid-column:1/-1;max-width:50%;margin:auto}
+      .planos{grid-template-columns:1fr}
+    }
+
+    @media(max-width:560px){
+      body{font-size:17px}
+      .topo{padding:14px 18px}
+      .marca span:last-child{display:none}
+      .hero{
+        min-height:92svh;
+        align-items:flex-end;
+        background:
+          linear-gradient(0deg,rgba(26,13,11,.78) 0%,rgba(26,13,11,.30) 52%,rgba(26,13,11,.03) 75%),
+          url("assets/nosso-lugar.jpg") 60% center/cover no-repeat;
+      }
+      .hero h1{font-size:4.1rem}
+      .hero p{font-size:1.15rem}
+      .hero-conteudo{margin-bottom:58px}
+      .ciclos{margin-top:-26px}
+      .momentos-grid{grid-template-columns:1fr}
+      .momento,.momento:last-child{max-width:100%;grid-column:auto}
+      .momento-foto{aspect-ratio:6/5}
+      .secao{padding-left:18px;padding-right:18px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition:none!important}
+      .revelar{opacity:1;transform:none}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topo" id="topo">
+    <a class="marca" href="#inicio" aria-label="Voltar ao início">
+      <span class="mini-simbolos">≋ 〰 ∞</span>
+      <span>Nossa história</span>
+    </a>
+    <nav aria-label="Navegação principal">
+      <a href="#historia">Nossa história</a>
+      <a href="#momentos">Momentos</a>
+      <a href="#carta">Carta</a>
+      <a href="#planos">Planos</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-conteudo">
+        <h1>Nosso lugar favorito é aqui.</h1>
+        <p>Começo, recomeço e fim. Entre todos eles, continuamos escolhendo ficar juntos.</p>
+        <a class="botao" href="#historia">Ver nossa história <span>♡</span></a>
+      </div>
+    </section>
+
+    <section class="ciclos revelar" id="historia">
+      <div class="ciclos-grid">
+        <article class="ciclo">
+          <svg viewBox="0 0 180 100" aria-hidden="true">
+            <path d="M12 27 C42 50, 58 3, 93 27 S145 51,168 27"/>
+            <path d="M12 51 C42 74, 58 27, 93 51 S145 75,168 51"/>
+            <path d="M12 75 C42 98, 58 51, 93 75 S145 99,168 75"/>
+          </svg>
+          <h3>Começo ♡</h3>
+          <p>O início de um sonho.</p>
+        </article>
+
+        <article class="ciclo">
+          <svg viewBox="0 0 180 100" aria-hidden="true">
+            <path d="M18 27 C38 8,58 42,89 42 C125 42,153 9,165 27 C151 50,122 36,88 50 C54 64,37 83,21 74 C48 52,126 64,146 76"/>
+            <path d="M78 41 C53 30,58 8,84 10 C111 12,105 40,83 40"/>
+            <path d="M102 56 C129 69,120 96,94 90 C72 85,74 66,91 61"/>
+          </svg>
+          <h3>Recomeço ♡</h3>
+          <p>A coragem de tentar de novo.</p>
+        </article>
+
+        <article class="ciclo">
+          <svg viewBox="0 0 180 100" aria-hidden="true">
+            <path d="M18 52 C41 15,68 20,91 52 C113 83,143 80,163 50 C139 20,111 18,89 52 C66 84,38 83,18 52"/>
+          </svg>
+          <h3>Fim ♡</h3>
+          <p>O fim que nos leva a um novo começo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="secao" id="momentos">
+      <div class="container">
+        <h2 class="titulo revelar">Nossa história</h2>
+        <p class="subtitulo revelar">Não é feita apenas de grandes acontecimentos, mas de todas as vezes em que a vida mudou e ainda assim escolhemos continuar lado a lado.</p>
+
+        <div class="momentos-grid">
+          <article class="momento revelar">
+            <div class="momento-foto"><img src="assets/praia.png" alt="Nós dois juntos na praia" loading="lazy"></div>
+            <h3>Nosso começo</h3>
+            <p>O primeiro olhar, o primeiro sorriso e tudo o que começou sem pedir licença.</p>
+          </article>
+
+          <article class="momento revelar">
+            <div class="momento-foto"><img src="assets/parque.png" alt="Nós dois correndo juntos no parque" loading="lazy"></div>
+            <h3>Recomeços diários</h3>
+            <p>A vida muda, os planos mudam, mas a escolha de continuar permanece.</p>
+          </article>
+
+          <article class="momento revelar">
+            <div class="momento-foto"><img src="assets/casa.png" alt="Nós dois em casa, lendo juntos" loading="lazy"></div>
+            <h3>Nosso refúgio</h3>
+            <p>Um sofá, uma conversa, uma noite tranquila e a sensação de estar em casa.</p>
+          </article>
+
+          <article class="momento revelar">
+            <div class="momento-foto"><img src="assets/paris.png" alt="Nós dois viajando juntos para Paris" loading="lazy"></div>
+            <h3>Nossas aventuras</h3>
+            <p>Mais longe ou mais perto, todo lugar fica especial quando estamos juntos.</p>
+          </article>
+
+          <article class="momento revelar">
+            <div class="momento-foto"><img src="assets/sonhos.png" alt="Nós dois diante da casa dos nossos sonhos" loading="lazy"></div>
+            <h3>O que queremos</h3>
+            <p>Uma vida leve, com sonhos, propósito, cumplicidade e amor.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="carta">
+      <div class="container carta revelar">
+        <div class="carta-conteudo">
+          <blockquote>“Nosso amor é feito de ciclos, e cada ciclo nos escolhe de novo.”</blockquote>
+          <p>Talvez amar seja exatamente isso: começar com esperança, recomeçar com coragem e entender que certos fins existem apenas para abrir espaço para uma nova versão de nós.</p>
+          <p>Em cada fase, em cada dificuldade e em cada conquista, o meu lugar favorito continua sendo ao seu lado.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="planos">
+      <div class="container planos">
+        <div class="plano-foto revelar">
+          <img src="assets/nosso-lugar.jpg" alt="Nós dois deitados e abraçados em nossa cama" loading="lazy">
+        </div>
+
+        <div class="plano-texto revelar">
+          <h2>Para nós, por nós.</h2>
+          <p>Que a nossa história continue sendo escrita sem pressa, com verdade e com a certeza de que nenhuma fase precisa ser perfeita para ser inesquecível.</p>
+          <div class="lista-amor">
+            <div><span>♡</span> Continuar escolhendo um ao outro, todos os dias.</div>
+            <div><span>♡</span> Transformar planos em memórias compartilhadas.</div>
+            <div><span>♡</span> Fazer da nossa casa o lugar mais seguro do mundo.</div>
+            <div><span>♡</span> Lembrar que todo recomeço também é uma declaração de amor.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Feito com amor. Para sempre. ♡</strong>
+    <div>Começo · Recomeço · Fim</div>
+  </footer>
+
+  <script>
+    const topo = document.getElementById('topo');
+    const atualizarTopo = () => topo.classList.toggle('rolado', window.scrollY > 40);
+    window.addEventListener('scroll', atualizarTopo, {passive:true});
+    atualizarTopo();
+
+    const observador = new IntersectionObserver((itens) => {
+      itens.forEach(item => {
+        if(item.isIntersecting){
+          item.target.classList.add('visivel');
+          observador.unobserve(item.target);
+        }
+      });
+    }, {threshold: .12});
+
+    document.querySelectorAll('.revelar').forEach(el => observador.observe(el));
+  </script>
+</body>
+</html>
